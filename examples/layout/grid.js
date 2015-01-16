@@ -9,21 +9,22 @@ for (var i=0; i<rows; i++) {
    for (var j=0; j<cols; j++)
    {
       var opts = {
+        label: 'wow',
         top: 'center',
         left: 'center',
         width: '50%',
         height: '50%',
-        content: 'Hello {bold}world{/bold} (' + i + "," + j +') !',
+        content: 'Hello {bold}world{/bold} (' + i + "," + j +') !++',
         tags: true,
         border: {
           type: 'line'
-        },
+          },
         style: {
-          fg: 'white',
+          fg: 'green',
           bg: 'magenta',
           border: {
-            fg: '#f0f0f0'
-          },    
+            fg: '#ffff00'
+          },
         }
       }
 
