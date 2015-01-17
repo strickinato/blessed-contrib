@@ -2,6 +2,6 @@ node_modules
 p.js
 p1.js
 p2.js
-private.js
+private.json
 npm-debug.log
 privatekey.pem
