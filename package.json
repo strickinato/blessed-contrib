@@ -17,8 +17,9 @@
   },
   "dependencies": {
     "ansi-term": ">=0.0.1",
-    "map-canvas": ">=0.0.1",
     "drawille-canvas-blessed-contrib": ">=0.0.1",
+    "googleapis": "^1.1.0",
+    "map-canvas": ">=0.0.1",
     "memory-streams": "^0.1.0",
     "picture-tube": "0.0.4",
     "sparkline": "^0.1.1",

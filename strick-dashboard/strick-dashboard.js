@@ -1,5 +1,8 @@
 var blessed = require('blessed')
-, contrib = require('../index');
+, contrib = require('../index')
+, analytics = require('./analytics')();
+
+console.log(analytics)
 
 var screen = blessed.screen();
 
