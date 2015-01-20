@@ -18,6 +18,7 @@
   "dependencies": {
     "ansi-term": ">=0.0.1",
     "drawille-canvas-blessed-contrib": ">=0.0.1",
+    "forecast.io": "0.0.9",
     "googleapis": "^1.1.0",
     "map-canvas": ">=0.0.1",
     "memory-streams": "^0.1.0",

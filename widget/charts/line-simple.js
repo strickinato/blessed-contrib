@@ -1,18 +1,18 @@
 var blessed = require('blessed')
-   , Node = blessed.Node   
+   , Node = blessed.Node
    , Canvas = require('../canvas')
    , utils = require('../../utils.js')
 
-function Line(options) {  
+function Line(options) {
 
   var self = this
 
   if (!(this instanceof Node)) {
     return new Line(options);
   }
-  
+
   options.showNthLabel = options.showNthLabel || 1
-  options.style = options.style || {}  
+  options.style = options.style || {}
   options.style.line = options.style.line || "yellow"
   options.style.text = options.style.text || "green"
   options.style.baseline = options.style.baseline || "black"
@@ -20,7 +20,7 @@ function Line(options) {
   options.xPadding = options.xPadding || 10
 
   Canvas.call(this, options);
-  
+
 }
 
 Line.prototype.calcSize = function() {
@@ -31,8 +31,8 @@ Line.prototype.__proto__ = Canvas.prototype;
 
 Line.prototype.type = 'line';
 
-Line.prototype.setData = function(labels, data) {           
-    
+Line.prototype.setData = function(labels, data) {
+
     if (!this.ctx) {
       throw "error: canvas context does not exist. setData() for line charts must be called after the chart has been added to the screen via screen.append()"
     }
@@ -47,13 +47,13 @@ Line.prototype.setData = function(labels, data) {
     function getMaxY() {
 
       var max = 0;
-      
+
       for(var i = 0; i < data.length; i ++) {
           if(data[i] > max) {
               max = data[i];
           }
       }
-      
+
       //max += 25 - max % 25;
       max*=1.2
 
@@ -87,8 +87,8 @@ Line.prototype.setData = function(labels, data) {
     }
 
     // Draw the Y value texts
-    for(var i = 0; i < getMaxY(); i += yLabelIncrement) {    
-        c.fillText(i.toString(), xPadding - xLabelPadding, getYPixel(i));    
+    for(var i = 0; i < getMaxY(); i += yLabelIncrement) {
+        c.fillText(i.toString(), xPadding - xLabelPadding, getYPixel(i));
     }
 
     // Draw the line graph
@@ -97,7 +97,7 @@ Line.prototype.setData = function(labels, data) {
     c.lineTo(getXPixel(0), getYPixel(data[0]));
 
     for(var i = 1; i < data.length; i ++) {
-        c.lineTo(getXPixel(i), getYPixel(data[i]));    
+        c.lineTo(getXPixel(i), getYPixel(data[i]));
     }
 
     c.stroke();
@@ -114,7 +114,7 @@ Line.prototype.setData = function(labels, data) {
     c.stroke();
 
     // Draw the X value texts
-    for(var i = 0; i < data.length; i=i+this.options.showNthLabel) {                
+    for(var i = 0; i < data.length; i=i+this.options.showNthLabel) {
         c.fillText(labels[i], getXPixel(i), this.canvasSize.height - yPadding + yLabelPadding);
     }
 
