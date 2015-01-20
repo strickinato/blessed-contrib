@@ -21,14 +21,13 @@ grid.applyLayout(screen);
 var table = grid.get(0, 0);
 var map = grid.get(0, 1);
 
+/* Website Analytics Table */
 function fillTable(data) {
   var headers = ["Action", "Label", "Count"]
 
   table.setData({ headers: headers, data: data.rows });
 }
-setInterval(function() {
-  analytics(fillTable)
-}, 360000)
+setInterval(function() { analytics(fillTable); }, 360000)
 
 
 /* Dummy data for the map */
