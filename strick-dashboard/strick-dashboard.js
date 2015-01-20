@@ -2,6 +2,7 @@ var blessed = require('blessed')
 , contrib = require('../index')
 , analytics = require('./analytics')(fillAnalytics)
 , forecast = require('./forecast')(fillForecast)
+, image = require('./image')('./strick-dashboard/aaron.png', fillImageBox);
 
 var screen = blessed.screen();
 
@@ -30,7 +31,10 @@ gridRight.set(0, 0, contrib.line, {
 });
 //FILLER
 gridMain.set(0, 0, contrib.map, {label: 'Left Location'})
-gridRightBottom.set(0, 1, contrib.map, {label: 'Servers Location'})
+
+gridRightBottom.set(0, 1, blessed.box, {
+    label: 'Image'
+});
 
 //INSERTS
 gridMain.set(0, 1, gridRight);
@@ -40,6 +44,12 @@ gridMain.applyLayout(screen);
 
 var line = gridRight.get(0, 0);
 var table = gridRightBottom.get(0, 0);
+var imageBox = gridRightBottom.get(0, 1)
+
+function fillImageBox(data) {
+  imageBox.setContent(data)
+  screen.render()
+}
 
 function fillAnalytics(data) {
   var headers = ["Action", "Label", "Count"];
