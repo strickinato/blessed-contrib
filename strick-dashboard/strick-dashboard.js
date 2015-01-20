@@ -1,43 +1,34 @@
 var blessed = require('blessed')
 , contrib = require('../index')
-, analytics = require('./analytics')();
-
-console.log(analytics)
+, analytics = require('./analytics')(fillTable)
 
 var screen = blessed.screen();
 
 
 var grid = new contrib.grid({rows: 1, cols: 2});
 
-grid.set(0, 0, contrib.bar, {
-  label: 'Google Sessions / Day',
-  barWidth: 8,
-  barSpacing: 10,
-  xOffset: 0,
-  maxHeight: 20
-});
+grid.set(0, 0, contrib.table, {
+  keys: true,
+  fg: 'green',
+  label: 'Events',
+  columnSpacing: 16}
+);
 
 grid.set(0, 1, contrib.map, {label: 'Servers Location'})
 
 grid.applyLayout(screen);
 
-var bar = grid.get(0, 0);
+var table = grid.get(0, 0);
 var map = grid.get(0, 1);
 
+function fillTable(data) {
+  var headers = ["Action", "Label", "Count"]
 
-
-/*Dummy data for the Bar Graph */
-var servers = ['US1', 'US2', 'EU1', 'AU1', 'AS1', 'JP1']
-
-function fillBar() {
-  var arr = []
-  for (var i=0; i<servers.length; i++) {
-    arr.push(Math.round(Math.random()*10))
-  }
-  bar.setData({titles: servers, data: arr})
+  table.setData({ headers: headers, data: data.rows });
 }
-fillBar()
-setInterval(fillBar, 2000)
+setInterval(function() {
+  analytics(fillTable)
+}, 360000)
 
 
 /* Dummy data for the map */
